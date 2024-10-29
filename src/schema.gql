@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+union CoordinatesUnion = MultiPolygon | Polygon
+
+type Country {
+  coordinates: CoordinatesUnion
+  id: String!
+  name: String!
+  type: Poly
+}
+
+type CountryPostion {
+  country: Country!
+  lastHourVisitedCountries: [String!]!
+  postion: Postion!
+  timeStamp: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type GQLCountries {
+  countries: [Country!]!
+}
+
+type GQLCurrentLocation {
+  currentLocation: CountryPostion!
+}
+
+type MultiPolygon {
+  coordinates: [[[Float!]!]!]!
+}
+
+"""The different types of polygons"""
+enum Poly {
+  MultiPolygon
+  Polygon
+}
+
+type Polygon {
+  coordinates: [[Float!]!]!
+}
+
+type Postion {
+  latitude: String!
+  longitude: String!
+}
+
+type Query {
+  findAllCountries: GQLCountries!
+  findIssCurrnetLocation: GQLCurrentLocation!
+}
+
+type Subscription {
+  currentLocationUpdate: GQLCurrentLocation!
+}

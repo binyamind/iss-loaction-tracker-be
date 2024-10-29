@@ -1,0 +1,86 @@
+subscription {
+  currentLocationUpdate {
+    currentLocation {
+      country {
+        id
+        name
+        type
+        coordinates {
+          ... on Polygon {
+            PolygonCoordinates: coordinates       
+          }
+          ... on MultiPolygon {
+            MultiPolygonCoordinates: coordinates
+          }
+        }
+      }
+      postion {
+        latitude
+        longitude
+      }
+    }
+  }
+}
+
+
+query {
+  findAllCountries {
+    countries {
+      id
+      type
+      name
+      coordinates {
+        ... on Polygon {
+				PolygonCoordinates :coordinates       
+        }
+        ... on MultiPolygon {
+          MultiPolygonCoordinates:coordinates
+        }
+      }
+    }
+  }
+}
+
+
+query {
+  findAllCountries {
+    countries {
+      id
+      name
+      type
+      coordinates {
+        __typename
+        ... on Polygon {
+         coordinates:coordinates
+        }
+      }
+    }
+  }
+}
+
+
+
+query {
+  findIssCurrnetLocation {
+    currentLocation {
+      country {
+        id
+        name
+        type
+        coordinates {
+        ... on Polygon {
+				PolygonCoordinates :coordinates       
+        }
+        ... on MultiPolygon {
+          MultiPolygonCoordinates:coordinates
+        }
+      }
+      }
+      postion {
+        latitude
+        longitude
+      }
+      lastHourVisitedCountries
+    }
+  }
+}
